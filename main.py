@@ -7,7 +7,8 @@ app = FastAPI()
 
 products = [
     Product(id = 1, name = "Phone", description = "Flagship",price =  399 , quantity =  1),
-    Product(id = 2, name = "Laptop", description = "Apple",price =  1299 , quantity =  1)
+    Product(id = 2, name = "Laptop", description = "Apple",price =  1299 , quantity =  1),
+    Product(id = 5, name = "PlayStation", description = "Sony",price =  799 , quantity =  1)
 ]
 
 @app.get('/')
@@ -20,4 +21,12 @@ def get_products():
 
 @app.get('/Product/{id}')
 def get_product_by_id(id:int):
-    return products[id-1]
+    for product in products:
+        if product.id == id:
+            return product
+    return "Product is Not Found"
+
+@app.post('/product')
+def add_product(product:Product):
+    products.append(product)
+    return product
