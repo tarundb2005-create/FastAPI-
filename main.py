@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from model import Product
+from database import session
 
 
 
